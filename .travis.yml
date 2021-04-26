@@ -1,0 +1,9 @@
+sudo: required
+services:
+  - docker
+
+before_install:
+  - docker build -t aalexis8/react-docker -f Dockerfile.dev .
+
+script:
+  - docker run -e CI=true aalexis8/react-docker yarn test -- --coverage
