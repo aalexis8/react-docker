@@ -7,3 +7,15 @@ before_install:
 
 script:
   - docker run -e CI=true aalexis8/react-docker yarn test -- --coverage
+
+deploy:
+  provider: elasticbeanstalk
+  region: 'us-east-2'
+  app: 'react-docker'
+  env: 'Reactdocker-env'
+  bucket_name: 'elasticbeanstalk-us-east-2-017075549921'
+  bucket_path: 'docker-react'
+  on:
+    branch: main
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: '$AWS_SECRET_KEY'
